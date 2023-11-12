@@ -1,25 +1,11 @@
+import java.util.Scanner;
+
 public class C_lista {
     
     public static void main(String[] args) {
-        System.out.println("H E L L O W O R L D ! ! !");
+        System.out.println("- - - - - M E S - - - - -");
+        System.out.println("Digite um número: ");
+        System.in.Scanner("");
 
-
-    }
-
-    public class MeusArrays {
-    
-        // Propriedades
-        public Array ar01; 
-        public Array ar02;
-        public int num;
-        
-        // Métodos
-
-
-    }   
-
-    public class TesteArrays {
-    
-        
     }
 }
