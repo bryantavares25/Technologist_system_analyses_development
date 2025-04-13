@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  String descricao = 'Feijoada!';
-  print(descricao);
-  //runApp(const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
