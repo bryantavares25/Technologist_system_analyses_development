@@ -29,16 +29,25 @@ class MyApp extends StatelessWidget {
 //return Padding(padding: EdgeInsets.all(16.0), child: Text("Olá, Flutter!"));
 //}
 
+//Widget myWidget() {
+//  return ElevatedButton(
+//    onPressed: () {
+//      // Ação quando o botão for pressionado
+//    },
+//    style: ElevatedButton.styleFrom(
+//      backgroundColor: Colors.blue, // Substitui "color"
+//      elevation: 4.0, // Substitui "altitude"
+//      splashFactory: InkSplash.splashFactory, // Alternativa ao splashColor
+//    ),
+//    child: const Text('Button'),
+//  );
+//}
+
 Widget myWidget() {
-  return ElevatedButton(
-    onPressed: () {
-      // Ação quando o botão for pressionado
-    },
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.blue, // Substitui "color"
-      elevation: 4.0, // Substitui "altitude"
-      splashFactory: InkSplash.splashFactory, // Alternativa ao splashColor
+  return TextField(
+    decoration: InputDecoration(
+      border: InputBorder.none,
+      hintText: 'Escreva algo aqui',
     ),
-    child: const Text('Button'),
   );
 }
