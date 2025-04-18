@@ -43,11 +43,41 @@ class MyApp extends StatelessWidget {
 //  );
 //}
 
+//Widget myWidget() {
+//  return TextField(
+//    decoration: InputDecoration(
+//      border: InputBorder.none,
+//      hintText: 'Escreva algo aqui',
+//    ),
+//  );
+//}
+
+//Widget myWidget() {
+//  return ListView.builder(
+//    padding: EdgeInsets.all(16.0),
+//    // espaçamento das linhas
+//    itemExtent: 30.0,
+//    // fornece uma lista infinita
+//    itemBuilder: (BuildContext context, int index) {
+//      return Text('Row $index');
+//    },
+//  );
+//}
+
 Widget myWidget() {
-  return TextField(
-    decoration: InputDecoration(
-      border: InputBorder.none,
-      hintText: 'Escreva algo aqui',
-    ),
+  return ListView.builder(
+    itemBuilder: (BuildContext context, int index) {
+      return ListTile(
+        title: Text('Row $index'),
+
+        onTap: () {
+          // alguma coisa
+        },
+      );
+    },
   );
+}
+
+Widget myLayoutWidget() {
+  return Padding(padding: EdgeInsets.all(8.0), child: Text("Hello world!"));
 }
