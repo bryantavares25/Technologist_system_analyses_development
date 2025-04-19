@@ -15,10 +15,24 @@ class IMCgrupos extends StatelessWidget {
             categoryText("Entre 25 e 30", "Sobrepeso"),
             categoryText("Maior de 30", "Obesidade"),
           ],
-        )
-      )
-    )
-  }
+        ),
+      ),
+    ),
+  };
 }
 
-class 
+Widget categoryText(String range, String description) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 20),
+      child: RichText(
+        text: TextSpan(
+          style: TextStyle(fontSize: 20, color: Colors.black),
+          children: [
+            TextSpan(text: "$range\n", style: TextStyle(fontWeight: FontWeight.bold)),
+            TextSpan(text: description),)
+          ],
+        ),
+      ),
+    );
+  }
+}
