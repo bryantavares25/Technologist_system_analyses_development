@@ -1,0 +1,6 @@
+name: RGAP_prokka
+channels:
+ - bioconda
+ - conda-forge
+dependencies:
+ - prokka=1.14.6

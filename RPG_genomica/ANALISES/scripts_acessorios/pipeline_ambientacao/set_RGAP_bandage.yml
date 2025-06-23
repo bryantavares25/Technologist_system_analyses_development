@@ -1,0 +1,6 @@
+name: RGAP_bandage
+channels:
+ - bioconda
+ - conda-forge
+dependencies:
+ - bandage=0.9.0
