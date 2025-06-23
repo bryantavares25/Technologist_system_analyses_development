@@ -2,7 +2,7 @@
 
 ## Considerações iniciais
 
-Eu desenvolvi um pipeline piloto de análises de bioinformática para uma empresa de Biotecnologia brasileira. Atualmente, o projeto está na sua segunda fase de desenvolvimento. A partir deste projeto desenvolvi a implementação do sistema para a disciplina de Projeto ecnológico do curso de Análise e Desenvolvimento de Sistemas.
+Eu desenvolvi um pipeline piloto de análises de bioinformática para uma empresa de Biotecnologia brasileira. Atualmente, o projeto está na sua segunda fase de desenvolvimento. A partir deste projeto desenvolvi a implementação do sistema para a disciplina de Projeto ecnológico do curso de Análise e Desenvolvimento de Sistemas. A ferramenta foi construida para execução em terminal linux.
 
 ## Funcionamento da ferramenta
 
