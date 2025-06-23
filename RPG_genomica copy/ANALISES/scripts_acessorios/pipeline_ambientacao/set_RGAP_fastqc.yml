@@ -1,0 +1,7 @@
+name: RGAP_fastqc
+channels:
+ - bioconda
+ - conda-forge
+dependencies:
+ - fastqc=0.12.1
+ - multiqc=1.27.1

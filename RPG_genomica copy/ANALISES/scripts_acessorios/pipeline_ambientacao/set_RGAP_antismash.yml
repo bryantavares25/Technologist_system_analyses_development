@@ -1,0 +1,6 @@
+name: RGAP_antismash
+channels:
+ - bioconda
+ - conda-forge
+dependencies:
+ - antismash=7.1.0

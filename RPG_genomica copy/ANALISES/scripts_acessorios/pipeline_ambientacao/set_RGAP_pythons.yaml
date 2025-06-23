@@ -1,0 +1,10 @@
+name: pythonsdep
+channels:
+ - defaults
+ - bioconda
+ - conda-forge
+dependencies:
+ - python
+ - sqlite
+ - pandas
+ - ncbi-datasets-cli
