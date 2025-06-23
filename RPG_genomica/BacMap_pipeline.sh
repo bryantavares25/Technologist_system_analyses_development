@@ -23,9 +23,9 @@ echo " > Configuração de ambientes e programas - END <"
 
 # <ambiente base conda>
 conda activate
-#pip install Biopython
-#pip install pandas
-#conda install sqlite -c conda-forge -y
+pip install Biopython
+pip install pandas
+conda install sqlite -c conda-forge -y
 conda deactivate
 
 # < Criação do banco de dados isoladosdb > 
@@ -91,7 +91,7 @@ tail -n +2 "$seqid" | while IFS=, read -r col1 col2 col3 col4 col5 col6 col7 col
     # python3 "$dir/ANALISES/scripts_acessorios/genomica_anotacao/00_anotacao_diretorios.py"
     # source $dir/ANALISES/scripts_acessorios/genomica_anotacao/00_anotacao_diretorios.py
 
-    #rm $temp_file
+    rm $temp_file
     echo " Finalização da linha "
 done
 
