@@ -11,7 +11,7 @@ INPUT:
 - Tabela_inicial deve conter o código externo (nome das pastas), o código interno (nome das amostras) e dados referentes a forma de sequenciamento de DNA.
 
 EXECUÇÃO:
-- O script BacMap_pipeline.sh deve ser executado dentro da sua pasta de origem para configuração dos ambientes e programas necessários.
+- O script BacMap_pipeline.sh deve ser executado dentro da sua pasta de origem (RPG_genomica) para configuração dos ambientes e programas necessários.
 - Dados de testes já estão prontos, sendo necessária apenas a execução do script.
 
 OUTPUT:
