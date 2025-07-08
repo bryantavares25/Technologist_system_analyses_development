@@ -1,4 +1,4 @@
-# BacMap - Pipeline para criação de banco de dados genômico a partir da montagem e anotação de genomas 
+# BacMap - Pipeline para criação de banco de dados genômico a partir da montagem e anotação de genomas
 
 ## Considerações iniciais
 

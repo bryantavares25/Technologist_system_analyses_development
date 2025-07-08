@@ -23,6 +23,7 @@ echo " > Configuração de ambientes e programas - END <"
 
 # <ambiente base conda>
 conda activate
+conda install python -y
 pip install Biopython
 pip install pandas
 conda install sqlite -c conda-forge -y
