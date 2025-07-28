@@ -1,5 +1,0 @@
-name: RGAP_interpro
-channels:
- - conda-forge
-dependencies:
- - openjdk=11.0.26

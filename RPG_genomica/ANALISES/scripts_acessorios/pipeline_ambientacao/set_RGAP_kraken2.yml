@@ -1,6 +1,0 @@
-name: RGAP_kraken2
-channels:
- - bioconda
- - conda-forge
-dependencies:
- - kraken2=2.14

@@ -1,8 +1,0 @@
-name: RGAP_quast
-channels:
- - defaults
- - bioconda
- - conda-forge
-dependencies:
- - quast
- - busco
