@@ -1,4 +1,31 @@
+// Atividade de Aula
+
+// Importar
 import 'package:flutter/material.dart';
+
+// Função Principal
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Atividade de Aula')),
+        body: myWidget(),
+      ),
+    );
+  }
+}
+
+Widget myWidget() {
+  return Text("TEXTO");
+}
+
+/*import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -120,3 +147,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
