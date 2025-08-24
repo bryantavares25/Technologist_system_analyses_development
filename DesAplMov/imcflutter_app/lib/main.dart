@@ -22,7 +22,24 @@ class MyApp extends StatelessWidget {
 }
 
 Widget myWidget() {
-  return Text("TEXTO");
+  return TextField(
+    decoration: InputDecoration(
+      border: OutlineInputBorder(),
+      labelText: 'Digite algo',
+    ),
+  );
+  /*return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.blue,
+      foregroundColor: Colors.white, // Cor do texto e ícones
+      elevation: 4.0, // Controla a elevação (sombra) do botão
+    ),
+    onPressed: () {
+      //DO
+    },
+    child: const Text('Button'),
+  );*/
+  //return Text("TEXTO");
 }
 
 /*import 'package:flutter/material.dart';
