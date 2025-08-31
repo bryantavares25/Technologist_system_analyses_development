@@ -8,20 +8,42 @@ class BMICalculatorScreen extends StatefulWidget {
 }
 
 class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
-  // ... (Variáveis de estado e métodos de lógica, como _selectedGender, _weightController, _calculateBMI, etc.) ...
+  String? _selectedGender;
+  final TextEditingController _weightController = TextEditingController();
+  final TextEditingController _heightController = TextEditingController();
+  double? _bmiResult;
+
+  void _calculateBMI() {
+    final double? weight = double.tryParse(_weightController.text);
+    final double? heightCm = double.tryParse(_heightController.text);
+    if (weight != null && heightCm != null && heightCm > 0) {
+      final double heightM = heightCm / 100;
+      setState(() {
+        _bmiResult = weight / (heightM * heightM);
+      });
+    } else {
+      setState(() {
+        _bmiResult = null;
+      });
+    }
+  }
+  String _selectedGender = 'Male';
+  final TextEditingController _weightController = TextEditingController();
+  final TextEditingController _heightController = TextEditingController();
+
+  final FocusNode _weightFocusNode = FocusNode();
+  final FocusNode _heightFocusNode = FocusNode();
+
+  double? _bmiResult;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            /* Ação de voltar */
-          },
-        ),
-        title: const Text('BMI Calculator'),
-        centerTitle: true,
+  void dispose() {
+    _weightController.dispose();
+    _heightController.dispose();
+    _weightFocusNode.dispose();
+    _heightFocusNode.dispose();
+    super.dispose();
+  }
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline),
@@ -57,53 +79,65 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                       _buildGenderSelection(
                         'Male',
                         'https://placehold.co/80x80/cccccc/000000?text=Male',
-                      ),
-                      _buildGenderSelection(
-                        'Female',
-                        'https://placehold.co/80x80/cccccc/000000?text=Female',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 40),
-                  Row(
-                    // Linha para os campos de entrada (Peso/Altura)
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      // Widget para campo de entrada (Exemplo)
                       _buildInputCard(
                         'Your weight (kg)',
                         TextEditingController(),
-                        FocusNode(),
+                        _weightFocusNode,
                       ),
-                      _buildInputCard(
-                        'Your height (cm)',
-                        TextEditingController(),
-                        FocusNode(),
+                  Row(
+                    // Linha para a seleção de gênero (Male/Female)
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      // Widget para seleção de gênero (Exemplo)
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectedGender = 'Male';
+                          });
+                        },
+                        child: _buildGenderSelection(
+                          'Male',
+                          'https://placehold.co/80x80/cccccc/000000?text=Male',
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectedGender = 'Female';
+                          });
+                        },
+                        child: _buildGenderSelection(
+                          'Female',
+                          'https://placehold.co/80x80/cccccc/000000?text=Female',
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      // Botão "Calculate your BMI"
-                      onPressed: () {
-                        /* Lógica para calcular o IMC */
-                      },
-                      child: const Text('Calculate your BMI'),
-                    ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildInputCard(
+                        'Your weight (kg)',
+                        _weightController,
+                        _weightFocusNode,
+                      ),
+                      _buildInputCard(
+                        'Your height (cm)',
+                        _heightController,
+                        _heightFocusNode,
+                      ),
+                    ],
                   ),
-                ],
-              ),
             ),
           ),
           // Teclado numérico customizado fixo na parte inferior
           Container(
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20),
+                      // Botão "Calculate your BMI"
+                      onPressed: () {
+                        _calculateAndShowBMI(context);
+                      },
+                      child: const Text('Calculate your BMI'),
                 topRight: Radius.circular(20),
               ),
             ),
@@ -127,16 +161,73 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
 
   Widget _buildInputCard(
     String label,
-    TextEditingController controller,
-    FocusNode focusNode,
-  ) {
-    // Implementação simplificada do widget de campo de entrada
-    return Expanded(
-      child: Column(
-        children: [
-          Text(label),
-          TextField(
-            controller: controller,
+  // --- Funções de construção de widgets (exemplo, para ilustrar a estrutura) ---
+
+  void _calculateAndShowBMI(BuildContext context) {
+    final double? weight = double.tryParse(_weightController.text);
+    final double? heightCm = double.tryParse(_heightController.text);
+
+    if (weight == null || heightCm == null || heightCm == 0) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Invalid input'),
+          content: const Text('Please enter valid numbers for weight and height.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    final double heightM = heightCm / 100;
+    final double bmi = weight / (heightM * heightM);
+
+    String category;
+    if (bmi < 18.5) {
+      category = 'Underweight';
+    } else if (bmi < 25) {
+      category = 'Normal weight';
+    } else if (bmi < 30) {
+      category = 'Overweight';
+    } else {
+      category = 'Obesity';
+    }
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Your BMI Result'),
+        content: Text('BMI: ${bmi.toStringAsFixed(1)}\nCategory: $category'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGenderSelection(String gender, String imagePath) {
+    // Implementação simplificada do widget de seleção de gênero
+    return Column(
+      children: [
+        CircleAvatar(radius: 40, backgroundImage: NetworkImage(imagePath)),
+        Text(
+          gender,
+          style: TextStyle(
+            fontWeight: _selectedGender == gender ? FontWeight.bold : FontWeight.normal,
+            color: _selectedGender == gender ? Colors.blue : Colors.black,
+          ),
+        ),
+      ],
+    );
+  }
             focusNode: focusNode,
             textAlign: TextAlign.center,
           ),
